@@ -1,5 +1,4 @@
-# SBP
-## Seeing the Bigger Picture: 3D Latent Mapping for Mobile Manipulation Policy Learning
+# Seeing the Bigger Picture: 3D Latent Mapping for Mobile Manipulation Policy Learning
 
 <p align="center">
   <a href="https://existentialrobotics.org/sbp_page/">Project Page</a> |
