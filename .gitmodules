@@ -1,0 +1,10 @@
+[submodule "third_party/ManiSkill"]
+	path = third_party/ManiSkill
+	url = https://github.com/haosulab/ManiSkill
+	branch = mshab
+[submodule "third_party/mshab"]
+	path = third_party/mshab
+	url = git@github.com:suk063/mshab.git
+[submodule "third_party/dinov3"]
+	path = third_party/dinov3
+	url = https://github.com/facebookresearch/dinov3

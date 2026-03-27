@@ -1,0 +1,24 @@
+name: sbp
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+    - torch
+    - torchvision
+    - "setuptools<81"
+    - omegaconf
+    - open3d
+    - open_clip_torch
+    - opencv-python
+    - tensorboard
+    - tensorboardX
+    - wandb
+    - viser
+    - scikit-image
+    - torchmetrics
+    - termcolor
+    - torch-geometric
+    - xformers
+    - "huggingface_hub[cli]"

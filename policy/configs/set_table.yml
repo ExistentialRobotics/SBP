@@ -1,0 +1,11 @@
+base_config: base.yml
+
+seed: 2
+
+TASK: set_table
+OBJ: all
+build_config_prefix: v3_sc1_staging_13
+
+algo:
+  text_input: ["bowl", "apple"]
+  map_dir: data/models/set_table

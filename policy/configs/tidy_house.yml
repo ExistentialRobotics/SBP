@@ -1,0 +1,9 @@
+base_config: base.yml
+
+TASK: tidy_house
+OBJ: all
+build_config_prefix: v3_sc1_staging_13
+
+algo:
+  text_input: ["potted_meat_can", "master_chef_can", "bowl", "tomato_soup_can", "cracker_box", "sugar_box", "gelatin_box", "pudding_box", "tuna_fish_can"]
+  map_dir: data/models/tidy_house

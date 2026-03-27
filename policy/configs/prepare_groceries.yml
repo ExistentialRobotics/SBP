@@ -1,0 +1,9 @@
+base_config: base.yml
+
+TASK: prepare_groceries
+OBJ: all
+build_config_prefix: v3_sc1_staging_13
+
+algo:
+  text_input: ["tomato_soup_can", "cracker_box", "tuna_fish_can", "bowl", "sugar_box", "master_chef_can", "pudding_box", "potted_meat_can", "gelatin_box"]
+  map_dir: data/models/prepare_groceries

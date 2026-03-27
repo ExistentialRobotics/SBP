@@ -1,0 +1,62 @@
+# Run settings
+run_pca: true
+vis_interval: 10
+num_images: -1  # -1 for all
+
+# Paths
+dataset_dir: "data/mapping/set_table"
+output_dir: "data/models"
+
+# Model settings
+model_type: "eva_clip"  # "dino" or "eva_clip"
+
+dino_model:
+  feature_dim: 1024
+  image_size: 256
+  patch_size: 16
+
+eva_clip_model:
+  feature_dim: 768
+  image_size: 224
+  patch_size: 14
+
+
+# VoxelHashTable grid settings
+grid:
+  one_to_one: true
+  levels: 2
+  feature_dim: 64
+  level_scale: 2.0
+  hash_table_size: 8388608  # 2**23
+  resolution: 0.2
+
+# Decoder (LatentDecoder)
+decoder:
+  hidden_dim: 256
+
+# Training settings
+training:
+  epochs: 50
+  optimizer_lr: 0.001
+  batch_size: 32
+  log_interval: 100
+  save_interval: 1
+
+# Scene settings
+scene_min: [-2.7, -8.2, -0.1]
+scene_max: [4.6, 4.7, 3.2]
+
+# Optional bounding box for sparse export filtering (world coords).
+# Only voxels within this box are exported. null = no filtering.
+export_bounds_min: [-2.7, -4.5, -0.1]
+export_bounds_max: [-1.2, 1.5, 3.2]
+
+# PCA visualization settings
+visualization:
+  max_points: 500000
+  point_size: 0.005
+  side_by_side_offset: 1.2
+  whiten: true
+  quantile_low: 0.02
+  quantile_high: 0.98
+  z_threshold: 2.5

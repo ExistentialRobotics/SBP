@@ -1,0 +1,61 @@
+seed: 0
+
+eval_env:
+  make_env: True
+  env_id: "PickSubtaskTrain-v0"
+  num_envs: 20
+  max_episode_steps: 200
+  continuous_task: True
+  cat_state: True
+  cat_pixels: False
+  frame_stack: 1
+  stationary_base: False
+  stationary_torso: False
+  stationary_head: True
+  task_plan_fp: ${oc.env:MS_ASSET_DIR,.maniskill}/data/scene_datasets/replica_cad_dataset/rearrange/task_plans/${TASK}/pick/train/${OBJ}.json
+  spawn_data_fp: ${oc.env:MS_ASSET_DIR,.maniskill}/data/scene_datasets/replica_cad_dataset/rearrange/spawn_data/${TASK}/pick/train/spawn_data.pt
+  record_video: False
+  info_on_video: True
+  extra_stat_keys: []
+  env_kwargs:
+    robot_force_mult: 0.001
+    robot_force_penalty_min: 0.2
+    target_randomization: False
+
+algo:
+  name: "bc"
+  lr: 1e-5
+  batch_size: 4
+  epochs: 20
+  eval_freq: 5
+  log_freq: 5
+  save_freq: 5
+  trajs_per_obj: 1000
+  data_dir_fp: data/demonstrations/${TASK}/pick/${OBJ}.h5
+  max_image_cache_size: 0
+  save_backup_ckpts: False
+  torch_deterministic: True
+  num_dataload_workers: 2
+
+  # CLIP / Agent Settings
+  clip_input_dim: 768
+  camera_intrinsics: [71.9144, 71.9144, 112, 112]
+  bc_loss_weight: 10.0
+  action_temp_weights: 0.3
+
+  # Transformer architecture
+  num_heads: 8
+  num_layers_transformer: 4
+  num_action_layer: 6
+  action_pred_horizon: 16
+  transf_input_dim: 384
+
+  # Map conditioning
+  decoder_path: data/models/latent_decoder.pt
+  map_level_index: 1
+
+logger:
+  workspace: mshab_exps
+  exp_name: bc-map-${TASK}
+  clear_out: True
+  tensorboard: True
