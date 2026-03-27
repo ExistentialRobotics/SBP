@@ -1,6 +1,6 @@
 # Run settings
 run_pca: true
-vis_interval: 10
+vis_interval: 5
 num_images: -1  # -1 for all
 
 # Paths
@@ -32,7 +32,7 @@ grid:
 
 # Decoder (LatentDecoder)
 decoder:
-  hidden_dim: 256
+  hidden_dim: 240
 
 # Training settings
 training:

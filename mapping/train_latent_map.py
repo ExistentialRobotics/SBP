@@ -286,8 +286,11 @@ def train(
 
         decoder_path = output_path / "latent_decoder.pt"
         if decoder_path.exists():
-            decoder.load_state_dict(torch.load(decoder_path, map_location=device, weights_only=True))
-            print(f"[LOAD] Loaded existing decoder from {decoder_path}")
+            decoder_ckpt = torch.load(decoder_path, map_location=device, weights_only=True)
+            decoder_state = decoder_ckpt.get("model", decoder_ckpt)
+            decoder.load_state_dict(decoder_state)
+            loaded_epoch = decoder_ckpt.get("epoch", "unknown")
+            print(f"[LOAD] Loaded existing decoder from {decoder_path} (epoch {loaded_epoch})")
     else:
         decoder = decoder.to(device)
 
@@ -395,7 +398,7 @@ def train(
         is_last_epoch = (epoch + 1) == cfg.num_epochs
         if (epoch + 1) % cfg.save_interval == 0 or is_last_epoch:
             # Save decoder
-            torch.save(decoder.state_dict(), output_path / "latent_decoder.pt")
+            torch.save({"model": decoder.state_dict(), "epoch": epoch + 1}, output_path / "latent_decoder.pt")
             print(f"[SAVE] Saved decoder to {output_path / 'latent_decoder.pt'}")
 
             # Save per-environment grids
