@@ -1,7 +1,10 @@
 # SBP
-### **Seeing the Bigger Picture: 3D Latent Mapping for Mobile Manipulation Policy Learning**
+## Seeing the Bigger Picture: 3D Latent Mapping for Mobile Manipulation Policy Learning
 
-#### [[Project Page](https://existentialrobotics.org/sbp_page/)] [[Paper](https://arxiv.org/abs/2510.03885)]
+<p align="center">
+  <a href="https://existentialrobotics.org/sbp_page/">Project Page</a> |
+  <a href="https://arxiv.org/abs/2510.03885">Paper</a>
+</p>
 
 <p align="center">
   <img src="assets/teaser.png" width="100%"/>
@@ -9,10 +12,20 @@
 
 Official implementation of **SBP (Seeing the Bigger Picture)** (ICRA 2026).
 
+---
+
+## Table of Contents
+- [Installation](#installation)
+- [Mapping Dataset Generation](#mapping-dataset-generation)
+- [Latent Mapping](#latent-mapping)
+- [Map-Conditioned Policy Learning](#map-conditioned-policy-learning)
+- [Acknowledgement](#acknowledgement)
+- [Citation](#citation)
+
 ## Installation
 
 ```bash
-git clone --recursive https://github.com/suk063/SBP.git
+git clone --recursive https://github.com/ExistentialRobotics/SBP.git
 bash setup.sh
 conda activate sbp
 ```
@@ -42,7 +55,9 @@ Train the latent map on the generated HDF5 dataset:
 ```bash
 python mapping/train_latent_map.py --config mapping/config/config.yaml
 ```
-Override paths with `--dataset_dir` and `--output_dir`. Visualize results at `localhost:8080` via Viser.
+Override paths with `--dataset_dir` and `--output_dir`.
+Visualize results at `localhost:8080` via Viser.
+
 To train on multiple episodes, place all `episode_*.hdf5` files in the same `--dataset_dir` directory — they will be loaded automatically.
 
 ## Map-Conditioned Policy Learning
@@ -50,13 +65,13 @@ To train on multiple episodes, place all `episode_*.hdf5` files in the same `--d
 Training a map-conditioned BC policy requires two prerequisites:
 1. **Latent maps** — Train your own following the [Latent Mapping](#latent-mapping) section above, or download pre-trained maps:
     ```bash
-    hf download suk063/SBP models --repo-type dataset --local-dir data/
+    huggingface-cli download suk063/SBP models --repo-type dataset --local-dir data/
     ```
     Pre-trained maps are available at: https://huggingface.co/datasets/suk063/SBP/tree/main/models
 
 2. **Expert demonstrations** — Generated via PPO RL policies from the [mshab](https://github.com/arth-shukla/mshab) repository. You can download our pre-generated demonstrations from HuggingFace:
     ```bash
-    hf download suk063/SBP demonstrations --repo-type dataset --local-dir data/
+    huggingface-cli download suk063/SBP demonstrations --repo-type dataset --local-dir data/
     ```
     The full dataset is also available at: https://huggingface.co/datasets/suk063/SBP
 
@@ -83,7 +98,7 @@ python policy/eval.py policy/configs/set_table.yml \
 
 Alternatively, use the provided evaluation script:
 ```bash
-bash scripts/run_eval.sh set_table 
+bash scripts/run_eval.sh set_table
 ```
 
 ## Acknowledgement
