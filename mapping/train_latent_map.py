@@ -29,7 +29,7 @@ if str(project_root) not in sys.path:
 from utils.geometry import unproject_depth_to_world
 from mapping.representations.voxel_hash_table import VoxelHashTable
 from mapping.models.latent_decoder import LatentDecoder
-from mapping.data.dataset import HDF5Dataset, collate_fn, EnvBatchSampler, hdf5_worker_init_fn
+from mapping.dataset.dataset import HDF5Dataset, collate_fn, EnvBatchSampler, hdf5_worker_init_fn
 from mapping.losses.cosine_similarity import cosine_similarity_loss
 from mapping.config.train_config import TrainConfig
 from utils.logger import TrainLogger

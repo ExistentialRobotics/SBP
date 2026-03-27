@@ -1,0 +1,14 @@
+.vscode/
+
+*.pt
+*.pth
+*.ply
+
+**/__pycache__/**
+
+logs/
+mshab_exps/
+wandb/
+eval/
+.maniskill/
+data/

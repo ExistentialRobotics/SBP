@@ -27,16 +27,12 @@ pip install torch-cluster -f "https://data.pyg.org/whl/torch-${TORCH_VER}.html"
 echo "Installing submodules..."
 pip install -e third_party/ManiSkill -e third_party/mshab
 
-# --- Download ManiSkill assets (skip if already present) --- #
+# --- Download ManiSkill assets (each checked individually) --- #
 export MS_ASSET_DIR="$(pwd)/.maniskill"
-if [ ! -d "$MS_ASSET_DIR" ]; then
-    echo "Downloading ManiSkill assets..."
-    yes | python -m mani_skill.utils.download_asset ycb
-    yes | python -m mani_skill.utils.download_asset ReplicaCAD
-    yes | python -m mani_skill.utils.download_asset ReplicaCADRearrange
-else
-    echo "ManiSkill assets already exist at $MS_ASSET_DIR, skipping download."
-fi
+echo "Downloading ManiSkill assets (skipping any already present)..."
+yes | python -m mani_skill.utils.download_asset ycb
+yes | python -m mani_skill.utils.download_asset ReplicaCAD
+yes | python -m mani_skill.utils.download_asset ReplicaCADRearrange
 
 echo ""
 echo "Done! Run: conda activate $ENV_NAME"
