@@ -9,7 +9,7 @@
   <img src="assets/teaser.png" width="100%"/>
 </p>
 
-Official implementation of **SBP (Seeing the Bigger Picture)** (ICRA 2026).
+This repo contains the code for **SBP (Seeing the Bigger Picture)**, our ICRA 2026 paper.
 
 ---
 
@@ -18,7 +18,7 @@ Official implementation of **SBP (Seeing the Bigger Picture)** (ICRA 2026).
 - [Mapping Dataset Generation](#mapping-dataset-generation)
 - [Latent Mapping](#latent-mapping)
 - [Map-Conditioned Policy Learning](#map-conditioned-policy-learning)
-- [Acknowledgement](#acknowledgement)
+- [Acknowledgements](#acknowledgements)
 - [Citation](#citation)
 
 ## Installation
@@ -29,12 +29,12 @@ bash setup.sh
 conda activate sbp
 ```
 
-All dependencies including PyTorch Geometric and xformers are installed automatically by `setup.sh`.
+All dependencies, including PyTorch Geometric and xformers, are installed automatically by `setup.sh`.
 
 ## Mapping Dataset Generation
 
 ### 1. Generate RGB-D Dataset
-Render RGB-D data from ManiSkill environments using camera poses in `dataset/camera_params/`. Output is HDF5.
+Render RGB-D data from ManiSkill environments using camera poses in `dataset/camera_params/`. The output is an HDF5 file.
 ```bash
 python dataset/render_from_camera_poses.py \
     --task set_table --build_config_idx 37 --task_plan_idx 0 --output_dir data/mapping
@@ -68,7 +68,7 @@ Training a map-conditioned BC policy requires two prerequisites:
     ```
     Pre-trained maps are available at: https://huggingface.co/datasets/suk063/SBP/tree/main/models
 
-2. **Expert demonstrations** — Generated via PPO RL policies from the [mshab](https://github.com/arth-shukla/mshab) repository. You can download our pre-generated demonstrations from HuggingFace:
+2. **Expert demonstrations** — Generated via PPO RL policies from the [mshab](https://github.com/arth-shukla/mshab) repository. You can download our pre-generated demonstrations from Hugging Face:
     ```bash
     huggingface-cli download suk063/SBP demonstrations --repo-type dataset --local-dir data/
     ```
@@ -100,7 +100,7 @@ Alternatively, use the provided evaluation script:
 bash scripts/run_eval.sh set_table
 ```
 
-## Acknowledgement
+## Acknowledgements
 
 We thank the authors of [ManiSkill3](https://github.com/haosulab/ManiSkill) and [mshab](https://github.com/arth-shukla/mshab) for their open-source contributions!
 
